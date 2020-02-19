@@ -113,7 +113,7 @@ public class MonthView extends ViewGroup {
                 view = LayoutInflater.from(mContext).inflate(R.layout.item_month_layout, null);
                 calendarItemConstraintLayout = view.findViewById(R.id.constraintLayout_calendar_item);
                 solarDay = view.findViewById(R.id.solar_day);
-                scheduleKindTextView = view.findViewById(R.id.textView_schedule_kind);
+//                scheduleKindTextView = view.findViewById(R.id.textView_schedule_kind);
                 lunarDay = view.findViewById(R.id.lunar_day);
             }
 
@@ -132,36 +132,37 @@ public class MonthView extends ViewGroup {
             solarDay.setText(String.valueOf(date.getSolar()[2]));
 
             //todo  這邊調整 scheduleKindTextView
-            scheduleKindTextView.setText(date.getTerm());
+//            scheduleKindTextView.setText(date.getTerm());
+            lunarDay.setText(date.getTerm());
 
 
-            //设置农历（节假日显示）
-            if (mAttrsBean.isShowLunar()) {
-                if ("初一".equals(date.getLunar()[1])) {
-                    lunarDay.setText(date.getLunar()[0]);
-                    if ("正月".equals(date.getLunar()[0]) && mAttrsBean.isShowHoliday()) {
-                        lunarDay.setTextColor(mAttrsBean.getColorHoliday());
-                        lunarDay.setText("春节");
-                    }
-                } else {
-                    if (!TextUtils.isEmpty(date.getSolarHoliday()) && mAttrsBean.isShowHoliday()) {//阳历节日
-                        setLunarText(date.getSolarHoliday(), lunarDay, date.getType());
-                    } else if (!TextUtils.isEmpty(date.getLunarHoliday()) && mAttrsBean.isShowHoliday()) {//农历节日
-                        setLunarText(date.getLunarHoliday(), lunarDay, date.getType());
-                    } else if (!TextUtils.isEmpty(date.getTerm()) && mAttrsBean.isShowTerm()) {//节气
-                        setLunarText(date.getTerm(), lunarDay, date.getType());
-                    } else {
-                        if (TextUtils.isEmpty(date.getLunar()[1])) {
-                            lunarDay.setVisibility(GONE);
-                        } else {
-                            lunarDay.setText(date.getLunar()[1]);//农历日期
-                        }
-                    }
-                }
-
-            } else {
-                lunarDay.setVisibility(GONE);
-            }
+//            //设置农历（节假日显示）
+//            if (mAttrsBean.isShowLunar()) {
+//                if ("初一".equals(date.getLunar()[1])) {
+//                    lunarDay.setText(date.getLunar()[0]);
+//                    if ("正月".equals(date.getLunar()[0]) && mAttrsBean.isShowHoliday()) {
+//                        lunarDay.setTextColor(mAttrsBean.getColorHoliday());
+//                        lunarDay.setText("春节");
+//                    }
+//                } else {
+//                    if (!TextUtils.isEmpty(date.getSolarHoliday()) && mAttrsBean.isShowHoliday()) {//阳历节日
+//                        setLunarText(date.getSolarHoliday(), lunarDay, date.getType());
+//                    } else if (!TextUtils.isEmpty(date.getLunarHoliday()) && mAttrsBean.isShowHoliday()) {//农历节日
+//                        setLunarText(date.getLunarHoliday(), lunarDay, date.getType());
+//                    } else if (!TextUtils.isEmpty(date.getTerm()) && mAttrsBean.isShowTerm()) {//节气
+//                        setLunarText(date.getTerm(), lunarDay, date.getType());
+//                    } else {
+//                        if (TextUtils.isEmpty(date.getLunar()[1])) {
+//                            lunarDay.setVisibility(GONE);
+//                        } else {
+//                            lunarDay.setText(date.getLunar()[1]);//农历日期
+//                        }
+//                    }
+//                }
+//
+//            } else {
+//                lunarDay.setVisibility(GONE);
+//            }
 
             //找到单选时默认选中的日期，并选中（如果有）
             if (mAttrsBean.getChooseType() == 0
