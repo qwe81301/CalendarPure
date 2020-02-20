@@ -6,6 +6,7 @@ import android.util.TypedValue;
 
 //import com.othershe.calendarview.bean.DateBean;
 import com.qwe81301.open.calendarpure.utils.calendar.bean.DateBean;
+import com.qwe81301.open.calendarpure.utils.calendar.bean.ShowMyClassResponseDataBean;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -20,7 +21,7 @@ public class CalendarUtil {
      * @param month 当前月份
      * @return
      */
-    public static List<DateBean> getMonthDate(int year, int month, Map<String, String> map) {
+    public static List<DateBean> getMonthDate(int year, int month, Map<String, ShowMyClassResponseDataBean.DataBean> map) {
         List<DateBean> datas = new ArrayList<>();
         int week = SolarUtil.getFirstWeekOfMonth(year, month - 1);
 
@@ -63,23 +64,29 @@ public class CalendarUtil {
     }
 
     //map.put("2017.11.6", "XXX");
-    private static DateBean initDateBean(int year, int month, int day, int type, Map<String, String> map) {
+
+    /**
+     *
+     * @param year
+     * @param month
+     * @param day
+     * @param type 0:上個月 1:當月 2:下個月
+     * @param map
+     * @return
+     */
+    private static DateBean initDateBean(int year, int month, int day, int type, Map<String, ShowMyClassResponseDataBean.DataBean> map) {
         DateBean dateBean = new DateBean();
         dateBean.setSolar(year, month, day);
 
-        if (map == null) {
-            // TODO: 2020/2/4 如果沒有指定特殊日期 就是會顯示農曆 這邊我暫不需要可以先註解
-//            String[] temp = LunarUtil.solarToLunar(year, month, day);
-//            dateBean.setLunar(new String[]{temp[0], temp[1]});
-//            dateBean.setLunarHoliday(temp[2]);
+        dateBean.setDataBean(map.get(year + "." + month + "." + day));
+
+        if (map.containsKey(year + "." + month + "." + day)) {
+            dateBean.setLunar(new String[]{"", map.get(year + "." + month + "." + day).getLeave(), ""});
+            dateBean.setTerm(map.get(year + "." + month + "." + day).getLeave());
         } else {
-            if (map.containsKey(year + "." + month + "." + day)) {
-                dateBean.setLunar(new String[]{"", map.get(year + "." + month + "." + day), ""});
-                dateBean.setTerm(map.get(year + "." + month + "." + day));
-            } else {
-                dateBean.setLunar(new String[]{"", "", ""});
-            }
+            dateBean.setLunar(new String[]{"", "", ""});
         }
+
 
         dateBean.setType(type);
 //        dateBean.setTerm(LunarUtil.getTermString(year, month - 1, day));//todo 原程式我先註解
@@ -110,7 +117,7 @@ public class CalendarUtil {
         if (rows == 4) {
             rows = 5;
         }
-         rows = 6;// todo 改成六行
+        rows = 6;// todo 改成六行
         return rows;
     }
 

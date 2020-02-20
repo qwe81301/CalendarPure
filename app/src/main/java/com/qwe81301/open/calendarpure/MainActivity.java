@@ -8,7 +8,7 @@ import android.view.View;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.qwe81301.open.calendarpure.utils.calendar.utils.CalendarUtil;
-import com.qwe81301.open.calendarpure.utils.calendar.utils.ShowMyClassResponseDataBean;
+import com.qwe81301.open.calendarpure.utils.calendar.bean.ShowMyClassResponseDataBean;
 import com.qwe81301.open.calendarpure.utils.calendar.weiget.CalendarView;
 
 import java.lang.reflect.Type;
@@ -529,7 +529,7 @@ public class MainActivity extends AppCompatActivity {
         reformatData(showMyClassResponseDataBean.getData());
 
         calendarView = findViewById(R.id.calendar);
-        HashMap<String, String> map = new HashMap<>();
+        HashMap<String, ShowMyClassResponseDataBean.DataBean> map = new HashMap<>();
 //        HashMap<String, String,Integer> map2 = new HashMap<>();
 
         for (int i = 0; i < showMyClassResponseDataList.size(); i++) {
@@ -541,7 +541,7 @@ public class MainActivity extends AppCompatActivity {
             String dayStr = String.valueOf(i+1);//這裡i+1 是因為從0開始
             String yearMonthDayStr = yearStr + "." + monthStr + "." + dayStr;
             //EX: map.put("2020.1.1", "XX假別");
-            map.put(yearMonthDayStr, showMyClassResponseDataList.get(i).getLeave());
+            map.put(yearMonthDayStr, showMyClassResponseDataList.get(i));
         }
 
 //        map.put("2017.10.30", "qaz");

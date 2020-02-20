@@ -1,4 +1,4 @@
-package com.qwe81301.open.calendarpure.utils.calendar.utils;
+package com.qwe81301.open.calendarpure.utils.calendar.bean;
 
 import java.util.LinkedHashMap;
 

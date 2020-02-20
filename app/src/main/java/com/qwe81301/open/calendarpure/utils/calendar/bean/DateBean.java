@@ -8,6 +8,8 @@ public class DateBean {
     private int type;//0:上月，1:当月，2:下月　// todo(注意) 影響點擊時上下月的切換
     private String term;//节气
 
+    private ShowMyClassResponseDataBean.DataBean dataBean;
+
     public int[] getSolar() {
         return solar;
     }
@@ -54,5 +56,13 @@ public class DateBean {
 
     public void setTerm(String term) {
         this.term = term;
+    }
+
+    public ShowMyClassResponseDataBean.DataBean getDataBean() {
+        return dataBean;
+    }
+
+    public void setDataBean(ShowMyClassResponseDataBean.DataBean dataBean) {
+        this.dataBean = dataBean;
     }
 }

@@ -25,6 +25,7 @@ import com.qwe81301.open.calendarpure.utils.calendar.listener.CalendarViewAdapte
 import com.qwe81301.open.calendarpure.utils.calendar.listener.OnPagerChangeListener;
 import com.qwe81301.open.calendarpure.utils.calendar.listener.OnSingleChooseListener;
 import com.qwe81301.open.calendarpure.utils.calendar.utils.CalendarUtil;
+import com.qwe81301.open.calendarpure.utils.calendar.bean.ShowMyClassResponseDataBean;
 import com.qwe81301.open.calendarpure.utils.calendar.utils.SolarUtil;
 
 import java.util.ArrayList;
@@ -411,7 +412,7 @@ public class CalendarView extends ViewPager {
     /**
      * 将指定日期的农历替换成对应文字
      */
-    public CalendarView setSpecifyMap(HashMap<String, String> map) {
+    public CalendarView setSpecifyMap(HashMap<String, ShowMyClassResponseDataBean.DataBean> map) {
         mAttrsBean.setSpecifyMap(map);
         return this;
     }

@@ -119,6 +119,20 @@ public class MonthView extends ViewGroup {
 
             solarDay.setTextColor(mAttrsBean.getColorSolar());
             solarDay.setTextSize(mAttrsBean.getSizeSolar());
+//            lunarDay.setTextColor(mAttrsBean.getColorLunar());
+
+            //判斷 月曆/列表 顯示不同班別文字顏色
+            if (date.getDataBean().getLeaveNum() == -1 && "".equals(date.getDataBean().getLeave())) {
+                //lunarDay.setTextColor();//灰字
+            } else if (date.getDataBean().getLeaveNum() == -1 && !"".equals(date.getDataBean().getLeave())) {
+                //lunarDay.setTextColor();//黑字
+            } else if (date.getDataBean().getLeaveNum() == 10) {
+                //lunarDay.setTextColor();//藍字
+            } else {
+                //lunarDay.setTextColor();//紅字
+            }
+
+
             lunarDay.setTextColor(mAttrsBean.getColorLunar());
             lunarDay.setTextSize(mAttrsBean.getSizeLunar());
 
@@ -134,35 +148,6 @@ public class MonthView extends ViewGroup {
             //todo  這邊調整 scheduleKindTextView
 //            scheduleKindTextView.setText(date.getTerm());
             lunarDay.setText(date.getTerm());
-
-
-//            //设置农历（节假日显示）
-//            if (mAttrsBean.isShowLunar()) {
-//                if ("初一".equals(date.getLunar()[1])) {
-//                    lunarDay.setText(date.getLunar()[0]);
-//                    if ("正月".equals(date.getLunar()[0]) && mAttrsBean.isShowHoliday()) {
-//                        lunarDay.setTextColor(mAttrsBean.getColorHoliday());
-//                        lunarDay.setText("春节");
-//                    }
-//                } else {
-//                    if (!TextUtils.isEmpty(date.getSolarHoliday()) && mAttrsBean.isShowHoliday()) {//阳历节日
-//                        setLunarText(date.getSolarHoliday(), lunarDay, date.getType());
-//                    } else if (!TextUtils.isEmpty(date.getLunarHoliday()) && mAttrsBean.isShowHoliday()) {//农历节日
-//                        setLunarText(date.getLunarHoliday(), lunarDay, date.getType());
-//                    } else if (!TextUtils.isEmpty(date.getTerm()) && mAttrsBean.isShowTerm()) {//节气
-//                        setLunarText(date.getTerm(), lunarDay, date.getType());
-//                    } else {
-//                        if (TextUtils.isEmpty(date.getLunar()[1])) {
-//                            lunarDay.setVisibility(GONE);
-//                        } else {
-//                            lunarDay.setText(date.getLunar()[1]);//农历日期
-//                        }
-//                    }
-//                }
-//
-//            } else {
-//                lunarDay.setVisibility(GONE);
-//            }
 
             //找到单选时默认选中的日期，并选中（如果有）
             if (mAttrsBean.getChooseType() == 0

@@ -28,7 +28,7 @@ public class AttrsBean {
     private int sizeSolar = 14;//阳历日期文字尺寸　//todo 修改 陽曆數字 字體大小
     private int sizeLunar = 8;//阴历日期文字尺寸
     //private int dayBg = R.drawable.blue_circle;//选中的背景 //todo 沒用到先註解
-    private Map<String, String> specifyMap;//指定日期对应的文字map
+    private Map<String, ShowMyClassResponseDataBean.DataBean> specifyMap;// TODO: 2020/2/20 原map<String,String> 改寫成 <String, ShowMyClassResponseDataBean.DataBean>
     private int chooseType = 0;//表示日历是单选还是多选
 
     public int[] getStartDate() {
@@ -175,11 +175,11 @@ public class AttrsBean {
 //        this.dayBg = dayBg;
 //    }
 
-    public Map<String, String> getSpecifyMap() {
+    public Map<String, ShowMyClassResponseDataBean.DataBean> getSpecifyMap() {
         return specifyMap;
     }
 
-    public void setSpecifyMap(Map<String, String> specifyMap) {
+    public void setSpecifyMap(Map<String, ShowMyClassResponseDataBean.DataBean> specifyMap) {
         this.specifyMap = specifyMap;
     }
 
