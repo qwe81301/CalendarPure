@@ -61,7 +61,6 @@ public class ShowMyClassInfoDialog {
 
         mDateTextView.setText(dateStr);
 
-
         String wks, wke, workInterval0Str;
         String wks1, wke1, workInterval1Str;
         String wks2, wke2, workInterval2Str;
@@ -185,182 +184,73 @@ public class ShowMyClassInfoDialog {
             mWorkInterval0TextView.setText(workInterval0Str);
         }
 
+        String reWks, reWke, restInterval0Str;
+        String reWks1, reWke1, restInterval1Str;
 
         //休息時間顯示
         if (("".equals(dataBean.getReWks()) || dataBean.getReWks() == null) &&
                 ("".equals(dataBean.getReWks1()) || dataBean.getReWks1() == null) &&
                 ("".equals(dataBean.getReWke()) || dataBean.getReWke() == null) &&
                 ("".equals(dataBean.getReWke1()) || dataBean.getReWke1() == null)) {
-            mWorkInterval0TextView.setText("無");
+            mRestInterval0TextView.setText("無");
         } else if (!"".equals(dataBean.getReWks()) && !"".equals(dataBean.getReWke()) &&
                 !"".equals(dataBean.getReWks1()) && !"".equals(dataBean.getReWke1())) {
 
-            // 一段開始工作時間(Wks) 一段結束工作時間(Wke) 都有值
-            if (dataBean.isTows()) {
-                wks = "隔天" + dataBean.getWks();
+            // 一段開始工作時間(reWks) 一段結束工作時間(reWke) 都有值
+            if (dataBean.isReTows()) {
+                reWks = "隔天" + dataBean.getReWks();
             } else {
-                wks = dataBean.getWks();
+                reWks = dataBean.getReWks();
             }
 
-            if (dataBean.isTowe()) {
-                wke = "隔天" + dataBean.getWke();
+            if (dataBean.isReTowe()) {
+                reWke = "隔天" + dataBean.getReWke();
             } else {
-                wke = dataBean.getWke();
+                reWke = dataBean.getReWke();
             }
 
-            workInterval0Str = wks + " ~ " + wke;
-            mWorkInterval0TextView.setText(workInterval0Str);
+            restInterval0Str = reWks + " ~ " + reWke;
+            mRestInterval0TextView.setText(restInterval0Str);
 
-            // 一段開始工作時間(Wks) 一段結束工作時間(Wke) 都有值
-            if (dataBean.isTows1()) {
-                wks1 = "隔天" + dataBean.getWks1();
+            // 一段開始工作時間(reWks) 一段結束工作時間(reWke) 都有值
+            if (dataBean.isReTows1()) {
+                reWks1 = "隔天" + dataBean.getReWks1();
             } else {
-                wks1 = dataBean.getWks1();
+                reWks1 = dataBean.getReWks1();
             }
 
-            if (dataBean.isTowe1()) {
-                wke1 = "隔天" + dataBean.getWke1();
+            if (dataBean.isReTowe1()) {
+                reWke1 = "隔天" + dataBean.getReWke1();
             } else {
-                wke1 = dataBean.getWke1();
+                reWke1 = dataBean.getReWke1();
             }
 
-            workInterval1Str = wks1 + " ~ " + wke1;
-            mWorkInterval1TextView.setText(workInterval1Str);
-            mWorkInterval1TextView.setVisibility(View.VISIBLE);
+            restInterval1Str = reWks1 + " ~ " + reWke1;
+            mRestInterval1TextView.setText(restInterval1Str);
+            mRestInterval1TextView.setVisibility(View.VISIBLE);
 
-            // 一段開始工作時間(Wks) 一段結束工作時間(Wke) 都有值
-            if (dataBean.isTows2()) {
-                wks2 = "隔天" + dataBean.getWks2();
+        } else if (!"".equals(dataBean.getReWks()) && !"".equals(dataBean.getReWke())) {
+
+            // 一段開始工作時間(reWks) 一段結束工作時間(reWke) 都有值
+            if (dataBean.isReTows()) {
+                reWks = "隔天" + dataBean.getReWks();
             } else {
-                wks2 = dataBean.getWks2();
+                reWks = dataBean.getReWks();
             }
 
-            if (dataBean.isTowe2()) {
-                wke2 = "隔天" + dataBean.getWke2();
+            if (dataBean.isReTowe()) {
+                reWke = "隔天" + dataBean.getReWke();
             } else {
-                wke2 = dataBean.getWke2();
+                reWke = dataBean.getReWke();
             }
 
-            workInterval2Str = wks2 + " ~ " + wke2;
-            mWorkInterval2TextView.setText(workInterval2Str);
-            mWorkInterval2TextView.setVisibility(View.VISIBLE);
-
-        } else if (!"".equals(dataBean.getWks()) && !"".equals(dataBean.getWke()) &&
-                !"".equals(dataBean.getWks1()) && !"".equals(dataBean.getWke1())) {
-
-
-            // 一段開始工作時間(Wks) 一段結束工作時間(Wke) 都有值
-            if (dataBean.isTows()) {
-                wks = "隔天" + dataBean.getWks();
-            } else {
-                wks = dataBean.getWks();
-            }
-
-            if (dataBean.isTowe()) {
-                wke = "隔天" + dataBean.getWke();
-            } else {
-                wke = dataBean.getWke();
-            }
-
-            workInterval0Str = wks + " ~ " + wke;
-            mWorkInterval0TextView.setText(workInterval0Str);
-
-            // 一段開始工作時間(Wks) 一段結束工作時間(Wke) 都有值
-            if (dataBean.isTows1()) {
-                wks1 = "隔天" + dataBean.getWks1();
-            } else {
-                wks1 = dataBean.getWks1();
-            }
-
-            if (dataBean.isTowe1()) {
-                wke1 = "隔天" + dataBean.getWke1();
-            } else {
-                wke1 = dataBean.getWke1();
-            }
-
-            workInterval1Str = wks1 + " ~ " + wke1;
-            mWorkInterval1TextView.setText(workInterval1Str);
-            mWorkInterval1TextView.setVisibility(View.VISIBLE);
-
-
-        } else if (!"".equals(dataBean.getWks()) && !"".equals(dataBean.getWke())) {
-
-            // 一段開始工作時間(Wks) 一段結束工作時間(Wke) 都有值
-            if (dataBean.isTows()) {
-                wks = "隔天" + dataBean.getWks();
-            } else {
-                wks = dataBean.getWks();
-            }
-
-            if (dataBean.isTowe()) {
-                wke = "隔天" + dataBean.getWke();
-            } else {
-                wke = dataBean.getWke();
-            }
-
-            workInterval0Str = wks + " ~ " + wke;
-            mWorkInterval0TextView.setText(workInterval0Str);
+            restInterval0Str = reWks + " ~ " + reWke;
+            mRestInterval0TextView.setText(restInterval0Str);
         }
 
+        //顯示標準工時
+        mMyTimeTextView.setText(dataBean.getMyTime());
 
-//        mModePicker.setVisibility(View.VISIBLE);
-//        String[] modeArray = {"當日", "次日"};
-//
-//        mModePicker.setWrapSelectorWheel(false);
-//
-//        //修改 分隔線的寬度
-//        mModePicker.setNumberPickerDividerHeight(mModePicker);
-//
-//        //鎖住修改選中項文字功能
-//        mModePicker.setDescendantFocusability(TimePicker.FOCUS_BLOCK_DESCENDANTS);
-//
-//        mModePicker.setMinValue(1);
-//        mModePicker.setMaxValue(modeArray.length);
-//        mModePicker.setDisplayedValues(modeArray);
-//
-//
-//        //小時選擇器
-//        String[] hourArray = {"00", "01", "02", "03", "04", "05",
-//                "06", "07", "08", "09", "10", "11",
-//                "12", "13", "14", "15", "16", "17",
-//                "18", "19", "20", "21", "22", "23"};
-//
-//        //開啟 循環顯示功能
-//        mHourPicker.setWrapSelectorWheel(true);
-//
-//        //修改 分隔線的寬度
-//        mHourPicker.setNumberPickerDividerHeight(mHourPicker);
-//
-//        //鎖住修改選中項文字功能
-//        mHourPicker.setDescendantFocusability(TimePicker.FOCUS_BLOCK_DESCENDANTS);
-//
-//        mHourPicker.setMinValue(0);
-//        mHourPicker.setMaxValue(hourArray.length - 1);
-//        mHourPicker.setDisplayedValues(hourArray);
-//
-//        //分鐘選擇器
-//        String[] minute60Array = {"00", "01", "02", "03", "04", "05", "06",
-//                "07", "08", "09", "10", "11", "12", "13",
-//                "14", "15", "16", "17", "18", "19", "20",
-//                "21", "22", "23", "24", "25", "26", "27",
-//                "28", "29", "30", "31", "32", "33", "34",
-//                "35", "36", "37", "38", "39", "40", "41",
-//                "42", "43", "44", "45", "46", "47", "48",
-//                "49", "50", "51", "52", "53", "54", "55",
-//                "56", "57", "58", "59"};
-//
-//        //開啟 循環顯示功能
-//        mMinutePicker.setWrapSelectorWheel(true);
-//
-//        //修改 分隔線的寬度
-//        mMinutePicker.setNumberPickerDividerHeight(mMinutePicker);
-//
-//        //鎖住修改選中項文字功能
-//        mMinutePicker.setDescendantFocusability(TimePicker.FOCUS_BLOCK_DESCENDANTS);
-//
-//        mMinutePicker.setMinValue(0);
-//        mMinutePicker.setMaxValue(minute60Array.length - 1);
-//        mMinutePicker.setDisplayedValues(minute60Array);
 
 
 //        dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
