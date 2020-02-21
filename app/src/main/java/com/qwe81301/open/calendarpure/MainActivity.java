@@ -272,7 +272,8 @@ public class MainActivity extends AppCompatActivity {
                 "         \"wke1\": null,\n" +
                 "         \"tows2\": false,\n" +
                 "         \"wks2\": null,\n" +
-                "         \"towe2\": false,\n" +
+                "         \"towe2\"" +
+                ": false,\n" +
                 "         \"wke2\": null,\n" +
                 "         \"reTows\": false,\n" +
                 "         \"reWks\": null,\n" +

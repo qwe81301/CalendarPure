@@ -6,10 +6,12 @@ import android.graphics.Color;
 //import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
@@ -22,6 +24,7 @@ import androidx.core.content.ContextCompat;
 //import com.othershe.calendarview.listener.OnSingleChooseListener;
 //import com.othershe.calendarview.utils.CalendarUtil;
 import com.qwe81301.open.calendarpure.R;
+import com.qwe81301.open.calendarpure.utils.calendar.ShowMyClassInfoDialog;
 import com.qwe81301.open.calendarpure.utils.calendar.bean.AttrsBean;
 import com.qwe81301.open.calendarpure.utils.calendar.bean.DateBean;
 import com.qwe81301.open.calendarpure.utils.calendar.listener.CalendarViewAdapter;
@@ -52,6 +55,9 @@ public class MonthView extends ViewGroup {
     private Set<Integer> chooseDays = new HashSet<>();//记录多选时当前页选中的日期
     private AttrsBean mAttrsBean;
 
+    private ShowMyClassInfoDialog mShowMyClassInfoDialog;
+
+
     public MonthView(Context context) {
         this(context, null);
     }
@@ -61,10 +67,9 @@ public class MonthView extends ViewGroup {
 
         mContext = context;
         setBackgroundColor(Color.WHITE);
+
+        mShowMyClassInfoDialog = new ShowMyClassInfoDialog(getContext());
     }
-
-
-    //
 
     /**
      * @param dates            需要展示的日期数据
@@ -121,15 +126,30 @@ public class MonthView extends ViewGroup {
             solarDay.setTextSize(mAttrsBean.getSizeSolar());
 //            lunarDay.setTextColor(mAttrsBean.getColorLunar());
 
-            //判斷 月曆/列表 顯示不同班別文字顏色
-            if (date.getDataBean().getLeaveNum() == -1 && "".equals(date.getDataBean().getLeave())) {
-                //lunarDay.setTextColor();//灰字
-            } else if (date.getDataBean().getLeaveNum() == -1 && !"".equals(date.getDataBean().getLeave())) {
-                //lunarDay.setTextColor();//黑字
-            } else if (date.getDataBean().getLeaveNum() == 10) {
-                //lunarDay.setTextColor();//藍字
-            } else {
-                //lunarDay.setTextColor();//紅字
+//            if (date.getDataBean().getLeaveNum() == null){
+//
+//            }
+
+            //
+            if (date.getType() == 1) {
+
+                if (date.getDataBean() != null) {
+
+                    Log.v("TEST TAG_ not null", String.valueOf(i));
+
+                    //判斷 月曆/列表 顯示不同班別文字顏色
+                    if (date.getDataBean().getLeaveNum() == -1 && "".equals(date.getDataBean().getLeave())) {
+                        //lunarDay.setTextColor();//灰字
+                    } else if (date.getDataBean().getLeaveNum() == -1 && !"".equals(date.getDataBean().getLeave())) {
+                        //lunarDay.setTextColor();//黑字
+                    } else if (date.getDataBean().getLeaveNum() == 10) {
+                        //lunarDay.setTextColor();//藍字
+                    } else {
+                        //lunarDay.setTextColor();//紅字
+                    }
+                } else {
+                    Log.v("TEST TAG", String.valueOf(i));
+                }
             }
 
 
@@ -236,17 +256,25 @@ public class MonthView extends ViewGroup {
 //                        }
 
 
-                        //todo (提醒) 單选的情况
-                        calendarView.setLastClickDay(day);
-                        if (lastClickedView != null) {
-                            setDayColor(lastClickedView, COLOR_RESET);
-                        }
-                        setDayColor(v, COLOR_SET);
-                        lastClickedView = v;
+//                        //todo (提醒) 單选的情况
+//                        calendarView.setLastClickDay(day);
+//                        if (lastClickedView != null) {
+//                            setDayColor(lastClickedView, COLOR_RESET);
+//                        }
+//                        setDayColor(v, COLOR_SET);
+//                        lastClickedView = v;
+//
+//                        if (clickListener != null) {
+//                            clickListener.onSingleChoose(v, date);
+//                        }
 
-                        if (clickListener != null) {
-                            clickListener.onSingleChoose(v, date);
+                        //判斷 是否需要彈出 排班資料(跟顯示班別是黑字同個判斷) , 是 > 才能彈出視窗顯示排班資料 , 否 > 就不彈出視窗
+                        if (date.getDataBean().getLeaveNum() == -1 && !"".equals(date.getDataBean().getLeave())) {
+                            mShowMyClassInfoDialog.showDialog(date.getDataBean(), "2/29(TEST)");
                         }
+
+
+//                        Toast.makeText(mContext,date.getDataBean(),Toast.LENGTH_SHORT).show();
 
 
                     } else if (date.getType() == 0) {//点击上月
